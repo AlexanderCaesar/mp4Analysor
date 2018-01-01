@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{31ACE687-091E-44C1-BEF4-3C88204D51B4}</ProjectGuid>
+    <RootNamespace>mp4Analysor</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\analysis.h" />
+    <ClInclude Include="..\source\avcc.h" />
+    <ClInclude Include="..\source\box.h" />
+    <ClInclude Include="..\source\common.h" />
+    <ClInclude Include="..\source\dinf.h" />
+    <ClInclude Include="..\source\dref.h" />
+    <ClInclude Include="..\source\edts.h" />
+    <ClInclude Include="..\source\elst.h" />
+    <ClInclude Include="..\source\ftyp.h" />
+    <ClInclude Include="..\source\H264_util.h" />
+    <ClInclude Include="..\source\hdlr.h" />
+    <ClInclude Include="..\source\mdhd.h" />
+    <ClInclude Include="..\source\mdia.h" />
+    <ClInclude Include="..\source\minf.h" />
+    <ClInclude Include="..\source\moov.h" />
+    <ClInclude Include="..\source\mp4file.h" />
+    <ClInclude Include="..\source\mp4.h" />
+    <ClInclude Include="..\source\mvhd.h" />
+    <ClInclude Include="..\source\smhd.h" />
+    <ClInclude Include="..\source\stbl.h" />
+    <ClInclude Include="..\source\stsd.h" />
+    <ClInclude Include="..\source\trak.h" />
+    <ClInclude Include="..\source\trhd.h" />
+    <ClInclude Include="..\source\url.h" />
+    <ClInclude Include="..\source\vmhd.h" />
+    <ClInclude Include="..\source\wide.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\analysis.cpp" />
+    <ClCompile Include="..\source\avcc.cpp" />
+    <ClCompile Include="..\source\box.cpp" />
+    <ClCompile Include="..\source\common.cpp" />
+    <ClCompile Include="..\source\dinf.cpp" />
+    <ClCompile Include="..\source\dref.cpp" />
+    <ClCompile Include="..\source\edts.cpp" />
+    <ClCompile Include="..\source\elst.cpp" />
+    <ClCompile Include="..\source\ftyp.cpp" />
+    <ClCompile Include="..\source\H264_util.cc" />
+    <ClCompile Include="..\source\hdlr.cpp" />
+    <ClCompile Include="..\source\mdhd.cpp" />
+    <ClCompile Include="..\source\mdia.cpp" />
+    <ClCompile Include="..\source\minf.cpp" />
+    <ClCompile Include="..\source\moov.cpp" />
+    <ClCompile Include="..\source\mp4file.cpp" />
+    <ClCompile Include="..\source\mp4.cpp" />
+    <ClCompile Include="..\source\mvhd.cpp" />
+    <ClCompile Include="..\source\param.cpp" />
+    <ClCompile Include="..\source\smhd.cpp" />
+    <ClCompile Include="..\source\stbl.cpp" />
+    <ClCompile Include="..\source\stsd.cpp" />
+    <ClCompile Include="..\source\trak.cpp" />
+    <ClCompile Include="..\source\trhd.cpp" />
+    <ClCompile Include="..\source\url.cpp" />
+    <ClCompile Include="..\source\vmhd.cpp" />
+    <ClCompile Include="..\source\wide.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
