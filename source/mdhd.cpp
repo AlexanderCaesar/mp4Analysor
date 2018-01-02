@@ -67,6 +67,7 @@ int MDHDBOX::anlysis()
 		}
 		timescale = (((unsigned int)data[0]) << 24) + (((unsigned int)data[1]) << 16) + (((unsigned int)data[2]) << 8) + (((unsigned int)data[3]) << 0);
 		fprintf(g_mp4_log, "timescale        :    %d  将1秒钟分为%d份\n", timescale, timescale);
+		mp4Info.trackInfor[mp4Info.current_track_ID].timescale = timescale;
 
 		ret = fread(data, 1, 8, g_mp4_file);
 		if (ret !=8)
@@ -110,7 +111,7 @@ int MDHDBOX::anlysis()
 		}
 		timescale = (((unsigned int)data[0]) << 24) + (((unsigned int)data[1]) << 16) + (((unsigned int)data[2]) << 8) + (((unsigned int)data[3]) << 0);
 		fprintf(g_mp4_log, "timescale        :    %d  将1秒钟分为%d份\n", timescale, timescale);
-
+		mp4Info.trackInfor[mp4Info.current_track_ID].timescale = timescale;
 		ret = fread(data, 1, 4, g_mp4_file);
 		if (ret !=4)
 		{

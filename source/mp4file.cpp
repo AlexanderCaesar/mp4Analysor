@@ -30,6 +30,7 @@ void initMp4Info()
 	for (int i = 0; i < MAX_TRACKINFOR_NUM; i++)
 	{
 		mp4Info.trackInfor[i].track_ID = 0;
+		mp4Info.trackInfor[i].timescale = 0;
 	}
 }
 

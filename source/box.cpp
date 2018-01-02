@@ -25,6 +25,7 @@
 #include "stbl.h"
 #include "stsd.h"
 #include "avcc.h"
+#include "esds.h"
 
 #pragma warning(disable:4996)
 
@@ -247,6 +248,15 @@ int BOX::anlysis()
 			AVCCBOX avccbox(boxSize, read_bytes);
 			ret = avccbox.anlysis();
 			read_bytes = avccbox.read_bytes;
+		}
+		break;
+
+	case ESDS:
+		fprintf(g_mp4_log, "BOX    描述:    存放音频头信息等\n");
+		{
+			ESDSBOX esdsbox(boxSize, read_bytes);
+			ret = esdsbox.anlysis();
+			read_bytes = esdsbox.read_bytes;
 		}
 		break;
 	default:

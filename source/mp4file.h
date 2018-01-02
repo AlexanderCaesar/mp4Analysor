@@ -37,6 +37,7 @@ struct TrackInfor
 {
 	Mp4xType          handler_type;      //字段占32位 指示当前轨道的类型
 	unsigned      int track_ID;          //audio的track_ID
+	unsigned      int timescale;         //一秒钟分隔的份数 如：1000 表示 1秒钟分为1000份
 };
 
 enum HANDLETYPE

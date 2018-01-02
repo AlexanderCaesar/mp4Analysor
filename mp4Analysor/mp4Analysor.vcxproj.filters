@@ -93,6 +93,9 @@
     <ClInclude Include="..\source\H264_util.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\esds.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\mp4.cpp">
@@ -174,6 +177,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\source\H264_util.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\esds.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

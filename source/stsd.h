@@ -27,7 +27,7 @@ public:
 	 of data references.*/
 	unsigned int  data_reference_index;//占16位
 };
-#define MAX_OTHER_CHARS 256
+
 class VisualSampleEntryBOX :public SampleEntry
 {
 public:
@@ -50,11 +50,26 @@ public:
 	unsigned char compressorname[32]; //占32*8位
 	unsigned int  depth;          //占16位 = 0x0018; 占32位 images are in colour with no alpha
 	short         pre_defined2;   //占16位 应该为-1
-	unsigned char others[MAX_OTHER_CHARS]; //other strings
 
 
 public:
 	VisualSampleEntryBOX(unsigned __int64 boxSize_, unsigned __int64 read_bytes_);
+	int anlysis();
+};
+
+class AudioSampleEntryBOX :public SampleEntry
+{
+public:
+	unsigned int reserved1[2];//保留字段占32*2位 应该为0
+	unsigned int channelcount;//占16位 声道个数
+	unsigned int samplesize;  //每个样本点占用的位数 （有8位、16位 浮点型32位等） 16位 默认值16
+	unsigned int pre_defined;// 字段占16位 应该为0
+	unsigned int reserved2;//保留字段占16位 应该为0
+	unsigned int samplerate; //占32位 = { timescale of media } << 16
+
+
+public:
+	AudioSampleEntryBOX(unsigned __int64 boxSize_, unsigned __int64 read_bytes_);
 	int anlysis();
 };
 #endif

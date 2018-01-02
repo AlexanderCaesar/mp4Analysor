@@ -72,6 +72,7 @@
     <ClInclude Include="..\source\dref.h" />
     <ClInclude Include="..\source\edts.h" />
     <ClInclude Include="..\source\elst.h" />
+    <ClInclude Include="..\source\esds.h" />
     <ClInclude Include="..\source\ftyp.h" />
     <ClInclude Include="..\source\H264_util.h" />
     <ClInclude Include="..\source\hdlr.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="..\source\dref.cpp" />
     <ClCompile Include="..\source\edts.cpp" />
     <ClCompile Include="..\source\elst.cpp" />
+    <ClCompile Include="..\source\esds.cpp" />
     <ClCompile Include="..\source\ftyp.cpp" />
     <ClCompile Include="..\source\H264_util.cc" />
     <ClCompile Include="..\source\hdlr.cpp" />
