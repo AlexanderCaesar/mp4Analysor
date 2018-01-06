@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 
     delete anlysis;
     closeMp4Files();//关闭相关读写文件
+	desroryMp4Info();
     system("pause");
     return 0;
 }

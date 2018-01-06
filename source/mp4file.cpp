@@ -17,6 +17,7 @@ char *mp4_audio_name = NULL; //输出音频流信息         -a 配置 如：-a brazil-bq.a
 char *mp4_out_name = NULL; //输出修改后的mp4流      -o 配置 如：-o brazil-new.mp4
 
 int  g_errors        = 0;    //统计错误个数
+int  g_warning       = 0;    //统计警告个数
 
 Mp4Info mp4Info;
 
@@ -31,9 +32,84 @@ void initMp4Info()
 	{
 		mp4Info.trackInfor[i].track_ID = 0;
 		mp4Info.trackInfor[i].timescale = 0;
+		mp4Info.trackInfor[i].elst_entry_count = 0;
+		mp4Info.trackInfor[i].elst = NULL;
+		mp4Info.trackInfor[i].stts_entry_count = 0;
+		mp4Info.trackInfor[i].sum_sample_count = 0;
+		mp4Info.trackInfor[i].stts = NULL;
+		mp4Info.trackInfor[i].ctts_entry_count = 0;
+		mp4Info.trackInfor[i].ctts = NULL;
+		mp4Info.trackInfor[i].timeStamp = NULL;
+		mp4Info.trackInfor[i].stss_entry_count = 0;
+		mp4Info.trackInfor[i].stss = NULL;
+		mp4Info.trackInfor[i].sdtp = NULL;
+		mp4Info.trackInfor[i].stsc_entry_count = 0;
+		mp4Info.trackInfor[i].stsc = NULL;
+		mp4Info.trackInfor[i].stsz = NULL;
+		mp4Info.trackInfor[i].stco_entry_count = 0;
+		mp4Info.trackInfor[i].stco = NULL;
+
 	}
 }
 
+void desroryMp4Info()
+{
+	for (int i = 0; i < MAX_TRACKINFOR_NUM; i++)
+	{
+		if (mp4Info.trackInfor[i].elst)
+		{
+			free(mp4Info.trackInfor[i].elst);
+			mp4Info.trackInfor[i].elst = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].stts)
+		{
+			free(mp4Info.trackInfor[i].stts);
+			mp4Info.trackInfor[i].stts = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].ctts)
+		{
+			free(mp4Info.trackInfor[i].ctts);
+			mp4Info.trackInfor[i].ctts = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].timeStamp)
+		{
+			free(mp4Info.trackInfor[i].timeStamp);
+			mp4Info.trackInfor[i].timeStamp = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].stss)
+		{
+			free(mp4Info.trackInfor[i].stss);
+			mp4Info.trackInfor[i].stss = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].sdtp)
+		{
+			free(mp4Info.trackInfor[i].sdtp);
+			mp4Info.trackInfor[i].sdtp = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].stsc)
+		{
+			free(mp4Info.trackInfor[i].stsc);
+			mp4Info.trackInfor[i].stsc = NULL;
+		}
+		if (mp4Info.trackInfor[i].stsz)
+		{
+			free(mp4Info.trackInfor[i].stsz);
+			mp4Info.trackInfor[i].stsz = NULL;
+		}
+
+		if (mp4Info.trackInfor[i].stco)
+		{
+			free(mp4Info.trackInfor[i].stco);
+			mp4Info.trackInfor[i].stco = NULL;
+		}
+	}
+}
 //打开mp4相关文件
 void openMp4Files()    
 {

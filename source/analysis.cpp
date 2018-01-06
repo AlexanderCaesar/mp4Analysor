@@ -47,9 +47,11 @@ void Anlysis::anlysis()
         m_boxConter++;   //计数Tag个数    
     }
     printf("errors:    %d\n",g_errors);
+	printf("warns :    %d\n", g_warning);
 
     //mp4概要信息
     fprintf(g_mp4_log,"\n\n==================mp4 概要信息=========================\n");
     fprintf(g_mp4_log,"mp4 box 个数:    %d\n",m_boxConter);
     fprintf(g_mp4_log,"mp4错误个数:    %d\n",g_errors);
+	fprintf(g_mp4_log,"mp4警告个数:    %d\n", g_warning);
 }

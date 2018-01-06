@@ -109,5 +109,5 @@ void printfTimeStamp(unsigned __int64 timestamp, char *p)//¥Ú”° ±º‰¥¡
 	unsigned __int64 seconds = timestamp/mp4Info.timescale;
 	timestamp -= seconds*mp4Info.timescale;
 	unsigned __int64 millisecond = timestamp * 1000 / mp4Info.timescale;
-	sprintf(p, "%02lld:%02lld:%02lld.%lld", hour, minutes, seconds, millisecond);
+	sprintf(p, "%02lld:%02lld:%02lld.%3lld", hour, minutes, seconds, millisecond);
 }

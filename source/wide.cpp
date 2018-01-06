@@ -4,16 +4,15 @@
 
 #pragma warning(disable:4996)
 
-WIDEBOX::WIDEBOX(unsigned __int64 boxSize_, unsigned __int64 read_bytes_)
+OTHERBOX::OTHERBOX(unsigned __int64 boxSize_, unsigned __int64 read_bytes_)
 {
 	boxSize = boxSize_;  // Box的最终size
 
 	read_bytes = read_bytes_; //已经读取的自己数目
 
 }
-int WIDEBOX::anlysis()
+int OTHERBOX::anlysis()
 {
-	fprintf(g_mp4_log, "\n++++++++++++++++++WIDEBOX 概要信息+++++++++++++++++++++\n");
 	long size = (long)(boxSize - read_bytes);
 	int ret = 0;
 	fprintf(g_mp4_log, "size             : %d\n", size);

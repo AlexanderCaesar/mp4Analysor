@@ -26,6 +26,13 @@
 #include "stsd.h"
 #include "avcc.h"
 #include "esds.h"
+#include "stts.h"
+#include "ctts.h"
+#include "stss.h"
+#include "sdtp.h"
+#include "stsc.h"
+#include "stsz.h"
+#include "stco.h"
 
 #pragma warning(disable:4996)
 
@@ -192,11 +199,21 @@ int BOX::anlysis()
 		break;
 
 	case WIDE:
-		fprintf(g_mp4_log, "BOX    描述:    Wide 在一个视频中见过一次 具体不明 Box\n");
+		fprintf(g_mp4_log, "BOX    描述:    free 一般直接跳过\n");
+		fprintf(g_mp4_log, "\n++++++++++++++++++FREEBOX 概要信息+++++++++++++++++++++\n");
 		{
-			WIDEBOX widebox(boxSize, read_bytes);
-			ret = widebox.anlysis();
-			read_bytes = widebox.read_bytes;
+			OTHERBOX otherbox(boxSize, read_bytes);
+			ret = otherbox.anlysis();
+			read_bytes = otherbox.read_bytes;
+		}
+		break;
+	case FREE:
+		fprintf(g_mp4_log, "BOX    描述:    Wide 在一个视频中见过一次 具体不明 Box\n");
+		fprintf(g_mp4_log, "\n++++++++++++++++++WIDEBOX 概要信息+++++++++++++++++++++\n");
+		{
+			OTHERBOX otherbox(boxSize, read_bytes);
+			ret = otherbox.anlysis();
+			read_bytes = otherbox.read_bytes;
 		}
 		break;
 
@@ -257,6 +274,62 @@ int BOX::anlysis()
 			ESDSBOX esdsbox(boxSize, read_bytes);
 			ret = esdsbox.anlysis();
 			read_bytes = esdsbox.read_bytes;
+		}
+		break;
+	case STTS:
+		fprintf(g_mp4_log, "BOX    描述:    存放媒体片段的播放时间时长\n");
+		{
+			STTSBOX sttsbox(boxSize, read_bytes);
+			ret = sttsbox.anlysis();
+			read_bytes = sttsbox.read_bytes;
+		}
+		break;
+	case CTTS:
+		fprintf(g_mp4_log, "BOX    描述:    存放媒体片段的播放时间戳差值\n");
+		{
+			CTTSBOX cttsbox(boxSize, read_bytes);
+			ret = cttsbox.anlysis();
+			read_bytes = cttsbox.read_bytes;
+		}
+		break;
+	case STSS:
+		fprintf(g_mp4_log, "BOX    描述:    存放媒体关键帧位置\n");
+		{
+			STSSBOX stssbox(boxSize, read_bytes);
+			ret = stssbox.anlysis();
+			read_bytes = stssbox.read_bytes;
+		}
+		break;
+	case SDTP:
+		fprintf(g_mp4_log, "BOX    描述:    存放帧的参考关系\n");
+		{
+			SDTPBOX sdtpbox(boxSize, read_bytes);
+			ret = sdtpbox.anlysis();
+			read_bytes = sdtpbox.read_bytes;
+		}
+		break;
+	case STSC:
+		fprintf(g_mp4_log, "BOX    描述:    存放chunk中sample个数等信息\n");
+		{
+			STSCBOX stscbox(boxSize, read_bytes);
+			ret = stscbox.anlysis();
+			read_bytes = stscbox.read_bytes;
+		}
+		break;
+	case STSZ:
+		fprintf(g_mp4_log, "BOX    描述:    存放每帧的大小\n");
+		{
+			STSZBOX stszbox(boxSize, read_bytes);
+			ret = stszbox.anlysis();
+			read_bytes = stszbox.read_bytes;
+		}
+		break;
+	case STCO:
+		fprintf(g_mp4_log, "BOX    描述:    存放trunk偏移值\n");
+		{
+			STCOBOX stcobox(boxSize, read_bytes);
+			ret = stcobox.anlysis();
+			read_bytes = stcobox.read_bytes;
 		}
 		break;
 	default:

@@ -78,13 +78,6 @@ int TRHDBOX::anlysis()
 		track_ID = (((unsigned int)data[0]) << 24) + (((unsigned int)data[1]) << 16) + (((unsigned int)data[2]) << 8) + (((unsigned int)data[3]) << 0);
 		fprintf(g_mp4_log, "track_ID         :    %d  \n", track_ID);
 
-		mp4Info.current_track_ID = track_ID;
-		if (track_ID > MAX_TRACKINFOR_NUM)
-		{
-			fprintf(g_mp4_log, "错误:track_ID太大 不能超过  MAX_TRACKINFOR_NUM %d error %d\n", MAX_TRACKINFOR_NUM,g_errors); g_errors++;
-			return -1;
-		}
-
 		ret = fread(data, 1, 4, g_mp4_file);
 		if (ret !=4)
 		{
@@ -157,6 +150,16 @@ int TRHDBOX::anlysis()
 
 		read_bytes += 20;
 	}
+
+	mp4Info.current_track_ID = track_ID;
+
+
+	if (track_ID > MAX_TRACKINFOR_NUM)
+	{
+		fprintf(g_mp4_log, "错误:track_ID太大 不能超过  MAX_TRACKINFOR_NUM %d error %d\n", MAX_TRACKINFOR_NUM, g_errors); g_errors++;
+		return -1;
+	}
+
 
 	for (int i = 0; i < 2; i++)
 	{

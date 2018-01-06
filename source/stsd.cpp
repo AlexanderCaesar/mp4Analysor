@@ -456,7 +456,7 @@ int AudioSampleEntryBOX::anlysis()
 	{
 		BOX box;
 
-		fprintf(g_mp4_log, "\n\n++++++-------avc1 subbox %5d-------+++++++\n", subsubboxConter);
+		fprintf(g_mp4_log, "\n\n++++++-------mp4a subbox %5d-------+++++++\n", subsubboxConter);
 		if (box.readHeader() < 0)
 			break;
 
@@ -473,12 +473,12 @@ int AudioSampleEntryBOX::anlysis()
 		}
 		else if (read_bytes > boxSize)
 		{
-			fprintf(g_mp4_log, "错误:AVC1的子box长度(%d)和与AVC1长度(%d)不符合error %d\n", read_bytes, boxSize, g_errors); g_errors++;
+			fprintf(g_mp4_log, "错误:mp4a的子box长度(%d)和与AVC1长度(%d)不符合error %d\n", read_bytes, boxSize, g_errors); g_errors++;
 			break;
 		}
 	}
 	//AVC1概要信息
-	fprintf(g_mp4_log, "\navc1 sub box 个数:    %d\n", subsubboxConter);
+	fprintf(g_mp4_log, "\nmp4a sub box 个数:    %d\n", subsubboxConter);
 
 	return 0;
 }
