@@ -3,7 +3,7 @@
 //×÷Õß  ²ÌÑâ¸Õ  20171229  xiaoc@pku.edu.cn
 #include "box.h"
 
-#define MAX_WIDE_CHARS 256
+#define MAX_WIDE_CHARS 512
 
 class OTHERBOX : public BOX
 {

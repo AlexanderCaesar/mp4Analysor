@@ -33,6 +33,9 @@
 #include "stsc.h"
 #include "stsz.h"
 #include "stco.h"
+#include "udta.h"
+#include "meta.h"
+#include "mdat.h"
 
 #pragma warning(disable:4996)
 
@@ -60,13 +63,13 @@ int BOX::readHeader()
 	}
 	size = (((unsigned int)data[0]) << 24) + (((unsigned int)data[1]) << 16) + (((unsigned int)data[2]) << 8) + (((unsigned int)data[3]) << 0);
 
-	if (size == 0 || size == 1)
+	if (size == 1 || size == 0)
 	{
-		fprintf(g_mp4_log, "错误:暂时未遇到该类场景 Boxsize为 0 或者 1 size: %d  error %d\n", size,g_errors); g_errors++;
+		fprintf(g_mp4_log, "错误:暂时未遇到该类场景 Boxsize为1 或者为 0 size: %d  error %d\n", size,g_errors); g_errors++;
 		return -1;
 	}
-
 	boxSize = size;
+	
 	ret = fread(type.c_type, 1, 4, g_mp4_file); //read size
 
 	if (ret != 4)
@@ -198,8 +201,8 @@ int BOX::anlysis()
 		}
 		break;
 
-	case WIDE:
-		fprintf(g_mp4_log, "BOX    描述:    free 一般直接跳过\n");
+	case FREE:
+		fprintf(g_mp4_log, "BOX    描述:    Free 一般直接跳过\n");
 		fprintf(g_mp4_log, "\n++++++++++++++++++FREEBOX 概要信息+++++++++++++++++++++\n");
 		{
 			OTHERBOX otherbox(boxSize, read_bytes);
@@ -207,7 +210,7 @@ int BOX::anlysis()
 			read_bytes = otherbox.read_bytes;
 		}
 		break;
-	case FREE:
+	case WIDE:
 		fprintf(g_mp4_log, "BOX    描述:    Wide 在一个视频中见过一次 具体不明 Box\n");
 		fprintf(g_mp4_log, "\n++++++++++++++++++WIDEBOX 概要信息+++++++++++++++++++++\n");
 		{
@@ -332,9 +335,41 @@ int BOX::anlysis()
 			read_bytes = stcobox.read_bytes;
 		}
 		break;
+
+	case UDTA:
+		fprintf(g_mp4_log, "BOX    描述:    用户信息\n");
+		{
+			UDTABOX udtabox(boxSize, read_bytes);
+			ret = udtabox.anlysis();
+			read_bytes = udtabox.read_bytes;
+		}
+		break;
+	//case MDAT:
+	//	fprintf(g_mp4_log, "BOX    描述:    具体的音视频数据信息\n");
+	//	{
+	//		MDATBOX mdatbox(boxSize, read_bytes);
+	//		ret = mdatbox.anlysis();
+	//		read_bytes = mdatbox.read_bytes;
+	//	}
+	//	break;
+	case META:
+		fprintf(g_mp4_log, "BOX    描述:    META\n");
+		//{
+		//	METABOX metabox(boxSize, read_bytes);
+		//	ret = metabox.anlysis();
+		//	read_bytes = metabox.read_bytes;
+		//}
+		ret = fseek(g_mp4_file, (long)(boxSize - read_bytes), SEEK_CUR);
+		fprintf(g_mp4_log, "警告:BOX type 类型未见过（待添加到分析） warning %d\n", g_warning); g_warning++;
+		if (ret < 0)
+		{
+			fprintf(g_mp4_log, "错误:文件可能有损坏error %d\n", g_errors); g_errors++;
+		}
+		read_bytes = boxSize;
+		break;
 	default:
 		ret = fseek(g_mp4_file, (long)(boxSize - read_bytes), SEEK_CUR);
-		//fprintf(g_mp4_log, "错误:BOX type 类型未见过（待添加到分析） error %d\n", g_errors); g_errors++;
+		fprintf(g_mp4_log, "错误:BOX type 类型未见过（待添加到分析） error %d\n", g_errors); g_errors++;
 		if (ret < 0)
 		{
 			fprintf(g_mp4_log, "错误:文件可能有损坏error %d\n", g_errors); g_errors++;
