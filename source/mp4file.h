@@ -85,8 +85,8 @@ struct MP4STSZ
 
 struct MP4STCO
 {
-	unsigned  int   chunk_offset;//每个chunk的偏移值
-	unsigned  int   samples_per_chunk;//每个chunk的偏移值
+	unsigned  int   chunk_offset;//每个chunk的偏移值,从文件首地址开始偏移
+	unsigned  int   samples_per_chunk;//每个chunk的sample个数
 
 };
 

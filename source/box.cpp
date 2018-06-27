@@ -344,14 +344,16 @@ int BOX::anlysis()
 			read_bytes = udtabox.read_bytes;
 		}
 		break;
-	//case MDAT:
-	//	fprintf(g_mp4_log, "BOX    描述:    具体的音视频数据信息\n");
-	//	{
-	//		MDATBOX mdatbox(boxSize, read_bytes);
-	//		ret = mdatbox.anlysis();
-	//		read_bytes = mdatbox.read_bytes;
-	//	}
-	//	break;
+	case MDAT:
+		fprintf(g_mp4_log, "BOX    描述:    具体的音视频数据信息\n");
+    ret = fseek(g_mp4_file, (long)(boxSize - read_bytes), SEEK_CUR);
+    read_bytes = boxSize;
+		//{
+		//	MDATBOX mdatbox(boxSize, read_bytes);
+		//	ret = mdatbox.anlysis();
+		//	read_bytes = mdatbox.read_bytes;
+		//}
+		break;
 	case META:
 		fprintf(g_mp4_log, "BOX    描述:    META\n");
 		//{

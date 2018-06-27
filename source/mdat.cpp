@@ -22,6 +22,7 @@ int MDATBOX::anlysis()
 
 		fprintf(g_mp4_log, "\n\n+-----------------mdat subbox %5d--------------------+\n", subboxConter);
 
+		fprintf(g_mp4_log, "offset %d\n", ftell(g_mp4_file));
 		ret = fread(data, 1, 4, g_mp4_file);
 		if (ret != 4)
 		{
@@ -31,6 +32,7 @@ int MDATBOX::anlysis()
 		unsigned int size = (((unsigned int)data[0]) << 24) + (((unsigned int)data[1]) << 16) + (((unsigned int)data[2]) << 8) + (((unsigned int)data[3]) << 0);
 		ret = fread(data, 1, 2, g_mp4_file);
 
+		fprintf(g_mp4_log, "0x%x 0x%x  0x%x 0x%x\n", data[0], data[1],data[2],data[3]);
 		ret = fseek(g_mp4_file, (long)(size - 2), SEEK_CUR);
 
 		fprintf(g_mp4_log, "size %d  %d 0x%x  0x%x\n", size,size>>16, data[0],data[1]);
