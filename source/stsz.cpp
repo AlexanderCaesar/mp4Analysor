@@ -63,11 +63,11 @@ int STSZBOX::anlysis()
 		fprintf(g_mp4_log, "错误:sample_size %d 不为0 sample_count 应该为 0 error %d\n", sample_size, sample_count, g_errors); g_errors++;
 		return -1;
 	}
-	if (sample_count != mp4Info.trackInfor[mp4Info.current_track_ID].sum_sample_count)
-	{
-		fprintf(g_mp4_log, "错误:sample_count %d 不等于 轨道先前计算的 sample_count %d error %d\n", sample_size, mp4Info.trackInfor[mp4Info.current_track_ID].sum_sample_count, g_errors); g_errors++;
-		return -1;
-	}
+	//if (sample_count != mp4Info.trackInfor[mp4Info.current_track_ID].sum_sample_count)
+	//{
+	//	fprintf(g_mp4_log, "错误:sample_count %d 不等于 轨道先前计算的 sample_count %d error %d\n", sample_size, mp4Info.trackInfor[mp4Info.current_track_ID].sum_sample_count, g_errors); g_errors++;
+	//	return -1;
+	//}
 
 	fprintf(g_mp4_log, "entry num              size\n");
 	if (sample_size != 0)
